@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio | Nelza Apriana</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ======== GLOBAL ======== */
+    :root {
+      --bg: #1a1a2e;
+      --bg-light: #0f3460;
+      --text: #f5f5f5;
+      --accent: #e94560;
+      --card-bg: rgba(255,255,255,0.05);
+      --card-hover: rgba(233,69,96,0.15);
+    }
+
+    [data-theme="light"] {
+      --bg: #f8f9fa;
+      --bg-light: #e9ecef;
+      --text: #212529;
+      --accent: #0d6efd;
+      --card-bg: #ffffff;
+      --card-hover: #f1f8ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.4s, color 0.4s;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--accent);
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(233, 69, 96, 0.3);
+    }
+
+    /* ======== HEADER ======== */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e94560, #0f3460);
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      font-weight: bold;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      letter-spacing: -2px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+    }
+
+    .tagline {
+      font-size: 1.4rem;
+      opacity: 0.85;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Social Icons */
+    .social-links {
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-links a {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-5px);
+      text-decoration: none;
+    }
+
+    /* ======== SECTIONS ======== */
+    /* Animasi Fade-in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.4s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      background: var(--card-hover);
+    }
+
+    .project-card h3 {
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .project-card ul {
+      padding-left: 20px;
+      margin: 15px 0;
+    }
+
+    .project-card li {
+      margin-bottom: 8px;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid var(--accent);
+      border-color: transparent;
+    }
+
+    /* Footer & Toggle */
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      background: rgba(0,0,0,0.05);
+      font-size: 0.95rem;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 100;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.5rem; }
+      .tagline { font-size: 1.1rem; }
+      .header-btns { flex-direction: column; }
+      section { padding: 60px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .avatar { width: 120px; height: 120px; font-size: 4rem; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔆 Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- 🏠 Header -->
+  <header>
+    <div class="avatar">NA</div>
+    <h1>NELZA APRIANA</h1>
+    <p class="tagline">Frontend Developer | UI/UX Designer | Creative Problem Solver</p>
+    <div class="header-btns">
+      <a href="#projects" class="btn">Lihat Project</a>
+      <a href="cv-nelza.pdf" download class="btn" style="background:#20bf6b;"><i class="fas fa-file-pdf"></i> Download CV</a>
+    </div>
+    <div class="social-links">
+      <a href="https://github.com/nelzaapriana" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/nelzaapriana" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://instagram.com/nelza.apriana" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:nelza.apriana.dev@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </header>
+
+  <!-- 📝 About -->
+  <section id="about" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">Tentang Saya</h2>
+      <p style="text-align:center; max-width:800px; margin:0 auto;">
+        Hai! Saya <strong>Nelza Apriana</strong>, seorang <strong>Frontend Developer</strong> yang percaya bahwa teknologi harus 
+        <em>indah, fungsional, dan inklusif</em>.  
+        Saya suka mengubah ide menjadi antarmuka yang responsif & menarik menggunakan HTML, CSS, JavaScript, dan React.  
+        Di luar coding, saya menikmati fotografi, menulis, dan menjelajahi kopi lokal dari penjuru Indonesia ☕📸.
+      </p>
+      <p style="text-align:center; margin-top:20px; opacity:0.8;">
+        🎯 Saat ini: Membangun aplikasi web dengan performa tinggi & pengalaman pengguna terbaik.
+      </p>
+    </div>
+  </section>
+
+  <!-- 🛠️ Projects -->
+  <section id="projects" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">Project Unggulan</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Website Portofolio Ini</h3>
+          <p>👩‍💻 Dibuat dari nol dengan HTML, CSS, JavaScript</p>
+          <ul>
+            <li>✅ Responsif (mobile-first)</li>
+            <li>🌙 Dark/Light mode otomatis</li>
+            <li>⚡ Tanpa framework — ringan & cepat</li>
+          </ul>
+          <small><em>Dibuat penuh cinta di Notepad++ 💖</em></small>
+        </div>
+        <div class="project-card">
+          <h3>KesehatanKU — Aplikasi Kesehatan</h3>
+          <p>📱 Aplikasi pelacakan kesehatan harian</p>
+          <ul>
+            <li>📊 Dashboard analitik sederhana</li>
+            <li>🔒 Penyimpanan lokal (localStorage)</li>
+            <li>🎨 UI/UX fokus pada aksesibilitas</li>
+          </ul>
+        </div>
+        <div class="project-card">
+          <h3>WarungKita — E-Commerce UMKM</h3>
+          <p>🛒 Platform digital untuk UMKM lokal</p>
+          <ul>
+            <li>🛒 Sistem keranjang & checkout</li>
+            <li>📍 Filter berdasarkan lokasi</li>
+            <li>📱 Mobile-friendly & SEO-ready</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✉️ Contact -->
+  <section id="contact" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">Kirim Pesan</h2>
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Nama Lengkap" required />
+        <input type="email" placeholder="Email Anda" required />
+        <textarea placeholder="Pesan untuk Nelza (misal: butuh website? ajak kolab? 💡)" rows="5" required></textarea>
+        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 🎯 Footer -->
+  <footer>
+    <p>&copy; 2025 <strong>NELZA APRIANA</strong>. Semua hak cipta dilindungi.</p>
+    <p>✨ Dibuat dengan HTML, CSS, JavaScript — dan secangkir kopi hangat ☕</p>
+  </footer>
+
+  <!-- 🧠 JavaScript -->
+  <script>
+    // 🔆 Dark/Light Mode Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+    
+    // Cek preferensi user
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const newTheme = current === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateIcon(newTheme);
+    });
+
+    function updateIcon(theme) {
+      icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    // 🌬️ Animasi Scroll (Fade-in saat masuk viewport)
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // 📨 Form Submit (simulasi)
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Terima kasih, Nelza akan segera membalas pesan Anda! ✅\n\n📝 *Catatan: Ini simulasi — untuk fitur kirim beneran, bisa integrasi Formspree/Netlify Forms*');
+      this.reset();
+    });
+
+    // 🧭 Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

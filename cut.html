@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio Pink</title>
+  <style>
+    /* Reset & Umum */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Animasi Gradient Bergerak */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Partikel Bergerak (opsional) */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 175, 189, 0.6);
+      animation: float 15s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+      50% { transform: translateY(-100px) rotate(180deg); opacity: 0.8; }
+    }
+
+    /* Konten Utama */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: #ff6b9d;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4);
+    }
+
+    .btn:hover {
+      background: #ff528f;
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 107, 157, 0.6);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Partikel Bergerak -->
+  <div class="particles" id="particles"></div>
+
+  <div class="container">
+    <h1>✨ Halo, Saya [Nama Kamu] ✨</h1>
+    <p>Seorang desainer & developer yang mencintai warna pink dan kreativitas! 🎀</p>
+    <a href="#portfolio" class="btn">Lihat Portofolio</a>
+
+    <div class="portfolio-grid" id="portfolio">
+      <div class="card">
+        <h3>Proyek 1</h3>
+        <p>Website landing page untuk UMKM lokal dengan tema pink pastel.</p>
+      </div>
+      <div class="card">
+        <h3>Proyek 2</h3>
+        <p>Aplikasi catatan harian berbasis web, manis & fungsional.</p>
+      </div>
+      <div class="card">
+        <h3>Proyek 3</h3>
+        <p>Ilustrasi digital & branding untuk brand kecantikan.</p>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2025 Portofolio Pink • Dibuat dengan 💖 dan Notepad++
+    </footer>
+  </div>
+
+  <script>
+    // Buat partikel bergerak secara acak
+    document.addEventListener('DOMContentLoaded', () => {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 20;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+
+        // Ukuran acak
+        const size = Math.random() * 60 + 10;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        // Posisi acak
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+
+        // Durasi & delay animasi acak
+        const duration = 15 + Math.random() * 20;
+        const delay = Math.random() * 10;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+
+        particlesContainer.appendChild(particle);
+      }
+    });
+  </script>
+
+</body>
+</html>

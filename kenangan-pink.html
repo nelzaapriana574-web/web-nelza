@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎀 Kenangan dalam Warna Pink</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* === CSS GLOBAL === */
+    :root {
+      --accent: #ff69b4; /* hot pink */
+      --bg: #fef9fb;
+      --text: #333;
+      --card-bg: white;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 20px 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section Title */
+    .section-title {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      color: #e74c8e;
+    }
+
+    /* Fade-in Animation */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn.secondary {
+      background: #f0f0f0;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(255, 105, 180, 0.3);
+    }
+
+    /* Filter Buttons */
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .filter-buttons button {
+      margin: 0 6px;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 30px;
+      background: #f5f5f5;
+      color: #555;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-buttons button:hover:not(.active) {
+      background: #e9e9e9;
+    }
+
+    .filter-buttons button.active {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+    }
+
+    /* Memory Grid */
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .memory-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    .memory-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .memory-header {
+      padding: 20px 20px 12px;
+      color: #333;
+    }
+
+    .category-tag {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 4px 12px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .memory-body {
+      padding: 20px;
+    }
+
+    .memory-body h3 {
+      margin: 0 0 8px;
+      color: #222;
+      font-size: 1.3rem;
+    }
+
+    .date {
+      font-size: 0.85rem;
+      color: #888;
+      margin: 0 0 12px;
+    }
+
+    /* Highlight animation for random memory */
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4); }
+      70% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(255, 105, 180, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 105, 180, 0); }
+    }
+    .memory-card.highlight {
+      animation: pulse 1.2s ease-out;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .section-title { font-size: 1.8rem; }
+      .memories-grid { grid-template-columns: 1fr; }
+      .filter-buttons button { padding: 6px 12px; font-size: 0.9rem; margin: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<section id="memories" class="fade-in">
+  <div class="container">
+    <h2 class="section-title">🎀 Kenangan dalam Warna Pink</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; font-size: 1.1rem;">
+      Setiap kenangan kecil punya warna. Dan milikku? Hampir semuanya <em style="color:var(--accent);">pink</em> — warna harapan yang tak pernah pudar.
+    </p>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">🌸 Semua</button>
+      <button class="filter-btn" data-filter="keluarga">👨‍👩‍👧 Keluarga</button>
+      <button class="filter-btn" data-filter="kuliah">🎓 Kuliah</button>
+      <button class="filter-btn" data-filter="masak">🍳 Masak</button>
+      <button class="filter-btn" data-filter="alam">🌿 Alam</button>
+    </div>
+
+    <!-- Memory Grid -->
+    <div class="memories-grid" id="memoriesGrid">
+      <!-- Diisi oleh JavaScript -->
+    </div>
+
+    <!-- Random Memory Button -->
+    <div style="text-align: center; margin-top: 40px;">
+      <button id="randomMemoryBtn" class="btn secondary" style="padding: 12px 28px;">
+        <i class="fas fa-dice"></i> Tunjukkan Kenangan Acak
+      </button>
+    </div>
+
+    <!-- Penutup Reflektif -->
+    <div style="text-align:center; margin:60px 0; max-width:700px; margin-left:auto; margin-right:auto;">
+      <blockquote style="font-size:1.3rem; font-style:italic; border-left:3px solid var(--accent); padding-left:20px; line-height:1.6;">
+        “Aku percaya: hidup bukan tentang momen besar yang viral.<br>
+        Tapi tentang detik-detik kecil yang kau simpan di saku hati —<br>
+        lalu kau keluarkan saat dunia terasa berat.”
+      </blockquote>
+      <p style="margin-top:20px; font-weight:600; color:var(--accent);">— Nelza, 18 November 2025</p>
+    </div>
+  </div>
+</section>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio Nelza Apriana</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* ======== GLOBAL ======== */
+    :root {
+      --bg: #1e1b2c;
+      --bg-light: #2d2640;
+      --text: #f8f6fb;
+      --accent: #ff9ec6;
+      --card-bg: rgba(255,255,255,0.06);
+      --card-hover: rgba(255,158,198,0.2);
+    }
+
+    [data-theme="light"] {
+      --bg: #fdf7fc;
+      --bg-light: #fce8f3;
+      --text: #3a2a44;
+      --accent: #ff6ba8;
+      --card-bg: #ffffff;
+      --card-hover: #fff0f8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.5s, color 0.5s;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Optional: Light particle background (comment out if too heavy) */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .particles span {
+      position: absolute;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(20px, 40px) rotate(90deg); }
+      50% { transform: translate(0, 80px) rotate(180deg); }
+      75% { transform: translate(-20px, 40px) rotate(270deg); }
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s forwards;
+    }
+
+    .section-title.appear {
+      animation: fadeInUp 0.8s forwards 0.2s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 32px;
+      background: var(--accent);
+      color: white;
+      border-radius: 32px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.4s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(255,158,198,0.3);
+      animation: popIn 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    .btn.appear-1 { animation-delay: 0.5s; }
+    .btn.appear-2 { animation-delay: 0.7s; }
+
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      70% { transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 8px 22px rgba(255,158,198,0.5);
+      background: #ff7fb8;
+    }
+
+    .btn.secondary {
+      background: rgba(255,158,198,0.15);
+      color: var(--accent);
+    }
+    .btn.secondary:hover {
+      background: rgba(255,158,198,0.3);
+    }
+
+    /* ======== HEADER ======== */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      margin-bottom: 32px;
+      overflow: hidden;
+      box-shadow: 
+        0 12px 35px rgba(255,158,198,0.4),
+        inset 0 4px 12px rgba(255,255,255,0.15);
+      animation: float 8s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0.5deg); }
+      50% { transform: translateY(-15px) rotate(-0.5deg); }
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .avatar:hover img {
+      transform: scale(1.08);
+    }
+
+    h1 {
+      font-size: 3.6rem;
+      margin-bottom: 16px;
+      background: linear-gradient(90deg, #ff9ec6, #ffb8d2, #ff9ec6);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+      opacity: 0;
+      animation: slideIn 0.9s forwards 0.3s;
+    }
+
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      opacity: 0;
+      max-width: 700px;
+      margin: 0 auto 35px;
+      animation: fadeIn 1s forwards 0.5s;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 0.88; }
+    }
+
+    .header-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Social Icons */
+    .social-links {
+      margin-top: 35px;
+      display: flex;
+      gap: 22px;
+    }
+
+    .social-links a {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+    }
+
+    /* staggered social icons */
+    .social-links a:nth-child(1) { animation: fadeIn 0.6s forwards 0.8s; }
+    .social-links a:nth-child(2) { animation: fadeIn 0.6s forwards 0.9s; }
+    .social-links a:nth-child(3) { animation: fadeIn 0.6s forwards 1.0s; }
+    .social-links a:nth-child(4) { animation: fadeIn 0.6s forwards 1.1s; }
+
+    .social-links a:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-8px) scale(1.15);
+      border-color: transparent;
+      box-shadow: 0 8px 20px rgba(255,158,198,0.5);
+      animation: none;
+    }
+
+    /* ======== SECTIONS ======== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 30px;
+      transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border: 1px solid rgba(255,255,255,0.06);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .project-card.appear-1 { transition-delay: 0.1s; }
+    .project-card.appear-2 { transition-delay: 0.2s; }
+    .project-card.appear-3 { transition-delay: 0.3s; }
+
+    .project-card.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px);
+      background: var(--card-hover);
+      border-color: rgba(255,158,198,0.4);
+      box-shadow: 0 12px 30px rgba(255,158,198,0.2);
+    }
+
+    .project-card h3 {
+      color: var(--accent);
+      margin-bottom: 14px;
+      font-size: 1.45rem;
+    }
+
+    /* Contact Form */
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 1rem;
+      transition: all 0.35s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid var(--accent);
+      border-color: transparent;
+      background: rgba(255,255,255,0.08);
+      transform: scale(1.01);
+    }
+
+    /* Footer & Toggle */
+    footer {
+      text-align: center;
+      padding: 40px 0 30px;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 200;
+      border: none;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      transition: all 0.4s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(25deg) scale(1.1);
+      background: var(--accent);
+      color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 { font-size: 2.8rem; }
+      .tagline { font-size: 1.25rem; }
+      .header-btns { flex-direction: column; }
+      section { padding: 60px 0; }
+      .avatar { width: 130px; height: 130px; }
+    }
+
+    @media (max-width: 480px) {
+      .avatar { width: 110px; height: 110px; }
+      h1 { font-size: 2.2rem; }
+      .tagline { font-size: 1.1rem; }
+      .section-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Optional: Light animated particles background -->
+  <div class="particles" id="particles"></div>
+
+  <!-- 🌸 Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- 🏠 Header -->
+  <header>
+    <div class="avatar">
+      <!-- nel.jpg -->
+      <img src="nel.jpg" alt="Nelza Apriana" onerror="this.src='https://via.placeholder.com/400x400/ff9ec6/ffffff?text=NF'; this.style.objectFit='cover';">
+    </div>
+    <h1>Nelza Apriana</h1>
+    <p class="tagline">Cerita  Nelza </p>
+    <div class="header-btns">
+      <a href="#projects" class="btn appear-1">🌸 Lihat Keseharian Nelza </a>
+      <a href="cv" download class="btn secondary appear-2">📄 Download CV</a>
+    </div>
+    <div class="social-links">
+      <a href="https://instagram.com/nlza_14" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:nelzaapriana01@email.com"><i class="fas fa-envelope"></i></a>
+    </div>
+  </header>
+
+  <p style="text-align:center; max-width:800px; margin:0 auto; line-height:1.7; font-size:1.05rem;">
+  Halo, aku <strong>Nelza Apriana</strong> 🌸<br>
+  Seorang mahasiswa baru di <strong>Universitas Bengkulu</strong>, jurusan <strong>Pendidikan Kimia</strong>. Aku lahir dan besar di Desa Maras tempat yang sederhana, penuh senyum, dan aroma masakan ibu yang selalu hangat.<br><br>
+  Sebagai anak bungsu dari dua bersaudara, aku dibesarkan dengan kasih sayang abangku, <strong>Rahmad</strong>, yang selalu mendukungku dari belakang. Warna pink adalah favoritku bukan hanya karena manis, tapi juga melambangkan kelembutan, keberanian, dan kebahagiaan kecil yang kusemai setiap hari.<br><br>
+  Di luar kelas, dapur adalah laboratoriumku yang sesungguhnya. Di sanalah aku bereksperimen bukan dengan larutan asam-basa, tapi dengan bumbu, nasi, dan cinta. Masak itu caraku berbagi kebahagiaan.<br><br>
+  Website ini adalah proyek pertamaku: bukan cuma belajar HTML/CSS, tapi juga cara kubercerita tentang harapan, ketakutan, kegagalan kecil, dan kebanggaan yang tulus. Karena setiap orang punya kisah. Dan ini adalah kisahku.
+</p>
+<section id="projects" class="fade-in">
+  <div class="container">
+    <h2 class="section-title">Keseharian Nelza</h2>
+   <div class="projects-grid">
+  <div class="project-card">
+    <h3>🎓 Hari Pertama: Langkah Pertama Menuju Mimpi</h3>
+    <p>🗓️ 12 Agustus 2024 | 📍 Kampus UNIB<br>
+    Tas penuh buku, jantung berdebar, dan doa di hati. Hari pertama kuliah di Prodi Pendidikan Kimia — aku gugup, tapi juga sangat bersyukur. Setiap bangku di ruang kelas terasa seperti pintu menuju masa depan yang ingin kubentuk dengan ilmu dan kebaikan.</p>
+    <small><em>“Guru bukan cuma mengajar kimia — tapi juga menyalakan semangat.”</em></small>
+  </div>
+
+  <div class="project-card">
+    <h3>🍳 Dapurku, Laboratorium Cinta</h3>
+    <p>🍲 Nasi goreng pertama untuk keluarga<br>
+    🔥 Gagal 2x — gosong & terlalu asin. Tapi di percobaan ketiga? Rasanya pas: gurih, hangat, dan penuh tawa.<br>
+    Di sini, aku belajar: <strong>kesabaran itu bumbu utama</strong>. Setiap aduk wajan mengajarkanku bahwa kegagalan bukan akhir — hanya bagian dari resep kesuksesan.</p>
+    <small><em>Resep harianku: 1 cinta, 2 sendok doa, dan sejumput keberanian untuk mencoba lagi.</em></small>
+  </div>
+
+  <div class="project-card">
+    <h3>📖 Tumbuh Perlahan, Seperti Bunga</h3>
+    <p>🌱 Aku mulai membaca 1 buku per bulan — bukan untuk pamer, tapi untuk menyentuh dunia lewat kata.<br>
+    ✍️ Setiap malam, aku tulis jurnal: refleksi, harapan, bahkan keluh kesah yang kuberi warna pink di margin.<br>
+    🎧 Musik lo-fi, suara hujan, atau sekadar duduk di teras — caraku berdamai dengan diri sendiri.</p>
+    <small><em>“Aku tidak buru-buru. Aku sedang mekar — pelan, pasti, dan indah pada waktunya.” 🌸</em></small>
+  </div>
+</div>
+</section>
+<!-- 🌿 Wisata Favorit -->
+<section id="wisata" class="fade-in">
+  <div class="container">
+    <h2 class="section-title">✨ Tempat yang Membentukku</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>🌊 Pantai Panjang, Bengkulu</h3>
+        <p>🌅 Pasir putih sepanjang 7 km, ombak yang tenang di pagi hari, dan langit jingga di senja.<br>
+        Di sini, aku sering jalan kaki bareng abang Rahmad sambil ngobrol tentang masa depan.<br>
+        Kalau pas surut, kami cari kerang kecil — bukan buat dimakan, tapi dikumpulkan jadi hiasan di meja belajarku.</p>
+        <small><em>“Laut mengajarkanku: kadang hidup itu luas, tenang, dan penuh kejutan kecil di pasirnya.”</em></small>
+      </div>
+
+      <div class="project-card">
+        <h3>⛰️ Danau Dendam Tak Sudah</h3>
+        <p>📍 Kota Bengkulu | 🌿 Legenda cinta & kesetiaan<br>
+        Namanya unik, tapi suasananya adem banget! Aku suka duduk di gazebo pinggir danau, bawa buku dan teh hangat.<br>
+        Konon, danau ini terbentuk dari air mata seorang gadis. Kalau aku? Aku percaya: air mata pun bisa jadi keindahan — asal diterima dengan ikhlas.</p>
+        <small><em>Tempatku menulis jurnal pertama kali. Di sini, aku belajar mendengar — pada alam, pada hati.</em></small>
+      </div>
+
+      <div class="project-card">
+        <h3>🏡 Desa Maras — Rumahku</h3>
+        <p>🌱 Sawah menghijau, ayam berkokok jam 5 pagi, dan aroma nasi liwet dari dapur Ibu.<br>
+        Di sini, tidak ada sinyal 4G — tapi ada sinyal cinta: dari tetangga yang bagi kue, dari adik kecil yang pinjam pensil, dari langit malam yang penuh bintang.<br>
+        Desa Maras mengajarkanku: kesederhanaan itu bukan kekurangan. Itu kekayaan yang tak bisa dibeli.</p>
+        <small><em>“Aku pergi ke kota untuk belajar. Tapi pulang ke desa untuk mengingat siapa diriku.” 💮</em></small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 🍚 Makanan Khas & Kenangan -->
+<section id="kuliner" class="fade-in">
+  <div class="container">
+    <h2 class="section-title">🍚 Rasa yang Bikin Rindu</h2>
+     <div class="projects-grid">
+      <div class="project-card">
+        <h3>🍲 Nasi Liwet Maras</h3>
+        <p>🔥 Dimasak di *dandang* (kuali tanah liat), pakai api kayu.<br>
+        Beras + santan + daun pandan + serai — dimasak pelan sampai wangi menyebar ke seluruh kampung.<br>
+        Dimakan bareng ikan asin goreng, sambal tomat, dan lalapan daun ubi.<br>
+        Ini bukan cuma makanan. Ini <em>pelukan dari Ibu</em> dalam bentuk nasi.</p>
+        <small><em>Resep warisan: “Jangan buru-buru. Nasi liwet butuh waktu, seperti cinta yang tulus.”</em></small>
+      </div>
+
+      <div class="project-card">
+        <h3>🍡 Kue Lempuk Durian</h3>
+        <p>💛 Khas Bengkulu — manis, legit, dan *nyengat* aromanya!<br>
+        Dulu aku takut coba. Sekarang? Aku bisa habiskan 3 potong sekaligus 😅<br>
+        Pas musim durian, Ibu bikin lempuk bareng tetangga. Kami duduk melingkar, ngobrol sambil aduk-aduk adonan. Prosesnya lama — tapi hasilnya kenangan seumur hidup.</p>
+        <small><em>“Rasa ‘aneh’ di awal, jadi rindu di akhir. Seperti banyak hal indah dalam hidup.”</em></small>
+      </div>
+
+      <div class="project-card">
+        <h3>🍳 Eksperimen: Roti Pink & Keju</h3>
+        <p>🎨 Ide iseng: roti tawar + selai stroberi + keju parut + sedikit cinta!<br>
+        Abang bilang: “Ini kayak warna hatimu — manis, ceria, dan selalu ada keju-nya 😄”<br>
+        Aku jadikan bekal kuliah. Teman-teman suka! Sekarang jadi *signature snack*-ku.<br>
+        Siapa sangka? Dapur kecil di Desa Maras bisa lahirkan ide yang bikin hari orang jadi lebih cerah.</p>
+        <small><em>Kadang, hidangan terbaik bukan yang paling mahal — tapi yang paling tulus dibuat.</em></small>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="memories" class="fade-in">
+    <div class="container">
+    <h2 class="section-title">🎀 Kenangan dalam Warna Pink</h2>
+    <p style="text-align: center; max-width: 700px; margin: 0 auto 30px; opacity: 0.9;">
+      Setiap kenangan kecil punya warna. Dan milikku? Hampir semuanya <em style="color:var(--accent);">pink</em> — warna harapan yang tak pernah pudar.
+    </p>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons" style="text-align: center; margin-bottom: 30px;">
+      <button class="filter-btn active" data-filter="all">🌸 Semua</button>
+      <button class="filter-btn" data-filter="keluarga">👨‍👩‍👧 Keluarga</button>
+      <button class="filter-btn" data-filter="kuliah">🎓 Kuliah</button>
+      <button class="filter-btn" data-filter="masak">🍳 Masak</button>
+      <button class="filter-btn" data-filter="alam">🌿 Alam</button>
+    </div>
+    <!-- Memory Grid -->
+    <div class="memories-grid" id="memoriesGrid">
+      <!-- Diisi oleh JavaScript -->
+    </div>
+
+    <!-- Random Memory Button -->
+    <div style="text-align: center; margin-top: 40px;">
+      <button id="randomMemoryBtn" class="btn secondary" style="padding: 12px 28px;">
+        <i class="fas fa-dice"></i> Tunjukkan Kenangan Acak
+      </button>
+    </div>
+
+    <!-- Penutup Reflektif -->
+    <div style="text-align:center; margin:60px 0; max-width:700px; margin-left:auto; margin-right:auto;">
+      <blockquote style="font-size:1.3rem; font-style:italic; border-left:3px solid var(--accent); padding-left:20px; line-height:1.6;">
+        “Aku percaya: hidup bukan tentang momen besar yang viral.<br>
+        Tapi tentang detik-detik kecil yang kau simpan di saku hati —<br>
+        lalu kau keluarkan saat dunia terasa berat.”
+      </blockquote>
+      <p style="margin-top:20px;  font-weight:600; color:var(--accent);">— Nelza, 18 November 2025</p>
+    </div>
+  </div>
+</section>
+
+  <!-- ✉️ Contact -->
+  <section id="contact" class="fade-in">
+    <div class="container">
+      <h2 class="section-title">Kirim Pesan</h2>
+      <form class="contact-form" id="contactForm">
+        <input type="text" placeholder="Nama Lengkap" required />
+        <input type="email" placeholder="Email" required />
+        <textarea placeholder="Pesan (misal: butuh website? yuk kolab!)" rows="5" required></textarea>
+        <button type="submit" class="btn">Kirim Pesan 💬</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 🌸 Footer -->
+  <footer>
+    <p>&copy; 2025 <strong>Nelza Apriana</strong>. Belajar Membuat website </p>
+    <p>✨ website pertama Nelza,semangat jangan takut pada kegagalan dan terusla MENCOBA!!!.</p>
+  </footer>
+
+  <script>
+    // ✨ Generate light animated particles (optional — remove if too heavy)
+    document.addEventListener('DOMContentLoaded', () => {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = window.innerWidth > 768 ? 25 : 10;
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('span');
+        const size = Math.random() * 12 + 4;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDelay = `${Math.random() * 15}s`;
+        particle.style.animationDuration = `${15 + Math.random() * 20}s`;
+        particlesContainer.appendChild(particle);
+      }
+    });
+
+    // 🌸 Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const icon = themeToggle.querySelector('i');
+    
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const newTheme = current === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateIcon(newTheme);
+    });
+
+    function updateIcon(theme) {
+      icon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+
+    // 🌬️ Staggered Scroll Animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('appear');
+
+          // Stagger project cards
+          if (entry.target.classList.contains('projects-grid')) {
+            const cards = entry.target.querySelectorAll('.project-card');
+            cards.forEach((card, i) => {
+              setTimeout(() => card.classList.add(`appear-${i+1}`), i * 200);
+            });
+          }
+
+          // Animate section ti
+
+</body>
+</html>
